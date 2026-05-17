@@ -184,13 +184,13 @@ const Relatorio = () => {
                     onClick={() => toggleSection(obra.id)}
                     className="flex w-full items-center justify-between gap-3 p-4 text-left"
                   >
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <div className="mb-2 inline-flex rounded-full bg-brand-accent/15 px-3 py-1 text-xs font-bold text-brand-accent">
                         {formatPeriod(obra.periodoInicio, obra.periodoFim)}
                       </div>
-                      <h4 className="text-xl font-bold text-brand-text">{obra.localizacao}</h4>
+                      <h4 className="truncate text-xl font-bold text-brand-text">{obra.localizacao}</h4>
                     </div>
-                    <div className="flex items-center gap-4">
+                    <div className="flex shrink-0 items-center gap-4">
                       <p className="text-lg font-bold text-brand-accent">
                         {formatBRL(obra.totalObra)}
                       </p>
@@ -209,9 +209,9 @@ const Relatorio = () => {
                             <tr>
                               <th className="px-4 py-3">Tipo</th>
                               <th className="px-4 py-3">Servico</th>
-                              <th className="px-4 py-3">Descricao</th>
-                              <th className="px-4 py-3">Qtd</th>
-                              <th className="px-4 py-3">Un</th>
+                              <th className="hidden px-4 py-3 md:table-cell">Descricao</th>
+                              <th className="hidden px-4 py-3 sm:table-cell">Qtd</th>
+                              <th className="hidden px-4 py-3 sm:table-cell">Un</th>
                               <th className="px-4 py-3">Subtotal</th>
                             </tr>
                           </thead>
@@ -220,19 +220,22 @@ const Relatorio = () => {
                               <tr key={item.id} className="border-t border-brand-border/80 text-brand-text">
                                 <td className="px-4 py-3">
                                   <span
-                                    className={`inline-flex rounded-full px-3 py-1 text-xs font-bold ${
+                                    className={`inline-flex rounded-full px-2 py-0.5 text-xs font-bold ${
                                       item.tipo === 'despesa'
                                         ? 'bg-brand-danger/15 text-brand-danger'
                                         : 'bg-brand-success/15 text-brand-success'
                                     }`}
                                   >
-                                    {item.tipo === 'despesa' ? 'Despesa' : 'Receita'}
+                                    {item.tipo === 'despesa' ? 'D' : 'R'}
+                                    <span className="hidden sm:inline">
+                                      {item.tipo === 'despesa' ? 'espesa' : 'eceita'}
+                                    </span>
                                   </span>
                                 </td>
                                 <td className="px-4 py-3">{item.servico}</td>
-                                <td className="px-4 py-3">{item.descricao}</td>
-                                <td className="px-4 py-3">{item.quantidade}</td>
-                                <td className="px-4 py-3">{item.unidade}</td>
+                                <td className="hidden px-4 py-3 md:table-cell">{item.descricao}</td>
+                                <td className="hidden px-4 py-3 sm:table-cell">{item.quantidade}</td>
+                                <td className="hidden px-4 py-3 sm:table-cell">{item.unidade}</td>
                                 <td
                                   className={`px-4 py-3 font-bold ${
                                     item.tipo === 'despesa'

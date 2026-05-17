@@ -37,7 +37,7 @@ function AppShell() {
       <div className="mx-auto flex min-h-screen max-w-[1600px]">
         <Sidebar />
 
-        <main className="flex-1 pb-28 md:pb-10">
+        <main className="min-w-0 flex-1 pb-28 md:pb-10">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             <header className="mb-6 animate-fade-slide rounded-[2rem] border border-brand-border bg-brand-card/75 p-5 shadow-soft backdrop-blur">
               <div className="max-w-3xl">
